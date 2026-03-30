@@ -14,7 +14,7 @@ export function routeHandler(req, res) {
     // se route existe 
     if (route) { 
         //executa a função controller (criado com sucesso!) se a rota for encontrada
-        return route.controller(req,res) 
+        return route.controller({req,res}) 
     }
 
     //retorna 404 se a rota não for encontrada
