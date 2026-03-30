@@ -5,7 +5,7 @@ export const tickets = [
         path: '/tickets', //caminho da rota
         //função que será executada quando a rota for acessada
         controller: (req, res) => {
-            Response.end("criado com sucesso")
+            return res.end("criado com sucesso")
         }
     }
 ]
