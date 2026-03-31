@@ -2,6 +2,7 @@ import { create } from "../controllers/tickets/create.js"
 import { index } from "../controllers/tickets/index.js"
 import { update } from "../controllers/tickets/update.js"
 import { updateStatus } from "../controllers/tickets/updateStatus.js"
+import { remove } from "../controllers/tickets/remove.js"
 
 export const tickets = [
     {
@@ -34,5 +35,13 @@ export const tickets = [
         path: '/tickets/:id/close', //caminho da rota
         //função que será executada quando a rota for acessada
         controller: updateStatus,
+    },
+
+     {
+        //criando a rota de tickets para listar todos os tickets
+        method: 'DELETE', //método http
+        path: '/tickets/:id', //caminho da rota
+        //função que será executada quando a rota for acessada
+        controller: remove,
     },
 ]

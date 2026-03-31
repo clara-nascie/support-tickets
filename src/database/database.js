@@ -79,4 +79,18 @@ export class Database {
      this.#persist()
     }
    }
+
+   //metodo para remover dados da tabela
+   delete (table, id) {
+    //buscando o indice da linha que tem o id informado
+    const rowIndex = this.#database[table].findIndex(row => row.id === id)
+
+    //verificando se a linha existe
+    if (rowIndex > -1){
+        //removendo a linha do banco de dados
+        this.#database[table].splice(rowIndex, 1)
+        //persistindo os dados
+        this.#persist()
+    }
+   }
 }
