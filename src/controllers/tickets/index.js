@@ -13,8 +13,11 @@ export function index({req, res, database}){
     const {status} = req.query
     console.log(status)
 
+    //criando os filtros
+    const filters = status ? {status} : null
+
     //buscando todos os tickets no banco de dados
-    const tickets = database.select("tickets")
+    const tickets = database.select("tickets", filters)
     //retornando os tickets
     return res.end(JSON.stringify(tickets))
 }

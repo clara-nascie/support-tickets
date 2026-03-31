@@ -41,9 +41,22 @@ export class Database {
    }
 
    //metodo para buscar dados na tabela
-   select (table) {
+   select (table, filters) {
     //verificando se a tabela existe, se não existir retorna um array vazio
     let data = this.#database[table] ?? []
+
+    //verificando se existe filtros
+    if (filters){
+        //filtrando os dados
+        data = data.filter((row => {
+            //transformando os filtros em um array de arrays
+            return Object.entries(filters).some(([key, value]) => {
+                //transformando os valores em string e comparando
+                return row[key].toLowerCase().includes(value.toLowerCase())
+            })
+        }))
+    }
+    //retorna os dados
     return data
    }
 }
