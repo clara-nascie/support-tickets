@@ -39,4 +39,11 @@ export class Database {
     //persistindo os dados
     this.#persist()
    }
+
+   //metodo para buscar dados na tabela
+   select (table) {
+    //verificando se a tabela existe, se não existir retorna um array vazio
+    let data = this.#database[table] ?? []
+    return data
+   }
 }
