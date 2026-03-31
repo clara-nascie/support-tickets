@@ -21,8 +21,11 @@ export function routeHandler(req, res) {
         //extrai os parâmetros da rota
         const routeParams = req.url.match(route.path)
 
-       //extrai os parâmetros da rota
-        const {query} = routeParams.groups
+       //extrai os parâmetros da rota e query params
+        const {query, ...params} = routeParams.groups
+
+        //adiciona os parâmetros da rota ao objeto req
+        req.params = params
 
         //adiciona os parâmetros da rota ao objeto req
         req.query = query ? extractQueryParams(query) : {}
