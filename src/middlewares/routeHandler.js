@@ -2,6 +2,10 @@
 
 //importando as rotas 
 import { routes } from "../routes/index.js";
+import { Database } from "../database/database.js";
+
+//criando o banco de dados
+const database = new Database()
 
 //função que vai lidar com as rotas 
 export function routeHandler(req, res) {
@@ -14,7 +18,7 @@ export function routeHandler(req, res) {
     // se route existe 
     if (route) { 
         //executa a função controller (criado com sucesso!) se a rota for encontrada
-        return route.controller({req,res}) 
+        return route.controller({req,res, database}) 
     }
 
     //retorna 404 se a rota não for encontrada
