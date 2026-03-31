@@ -2,13 +2,16 @@ export function update({req, res, database}) {
    
     //extrai o id do ticket
     const {id} = req.params
-    //se o body for nulo ou não existir, retorna um erro em vez de crashar
-    if (!req.body) {
-        return res.writeHead(400).end("Faltou preencher o corpo da mensagem!")
-    }
+    //extrai os dados do ticket
+    const {equipment, description} = req.body
 
-    const {equipment} = req.body
+   //atualiza os dados do ticket na tabela tickets 
+    database.update("tickets", id, {
+        equipment, 
+        description, 
+        updated_at: new Date(),
+    })
     
     //retorna o equipamento!
-    return res.end(equipment)
+    return res.end()
 }

@@ -59,4 +59,24 @@ export class Database {
     //retorna os dados
     return data
    }
+
+   //metodo para atualizar dados na tabela
+   update (table, id, data) {
+    //buscando o indice da linha que tem o id informado
+    const rowIndex = this.#database[table].findIndex(row => row.id === id)
+    console.log(rowIndex)
+
+    //verificando se a linha existe
+    if (rowIndex > -1){
+        //atualizando os dados da linha com os dados informados
+        this.#database[table][rowIndex] = {
+            //mantendo os dados antigos
+            ...this.#database[table][rowIndex],
+            //atualizando com os novos dados
+            ...data,
+        }
+        //persistindo os dados
+     this.#persist()
+    }
+   }
 }
