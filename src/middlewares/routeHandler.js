@@ -3,6 +3,7 @@
 //importando as rotas 
 import { routes } from "../routes/index.js";
 import { Database } from "../database/database.js";
+import { extractQueryParams } from "../utils/extractQuerryParams.js";
 
 //criando o banco de dados
 const database = new Database()
@@ -17,6 +18,15 @@ export function routeHandler(req, res) {
 
     // se route existe 
     if (route) { 
+        //extrai os parâmetros da rota
+        const routeParams = req.url.match(route.path)
+
+       //extrai os parâmetros da rota
+        const {query} = routeParams.groups
+
+        //adiciona os parâmetros da rota ao objeto req
+        req.query = query ? extractQueryParams(query) : {}
+
         //executa a função controller (criado com sucesso!) se a rota for encontrada
         return route.controller({req,res, database}) 
     }

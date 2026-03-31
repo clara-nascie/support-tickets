@@ -8,6 +8,11 @@
 
 //função para listar os tickets
 export function index({req, res, database}){
+
+    //pegando o status da query
+    const {status} = req.query
+    console.log(status)
+
     //buscando todos os tickets no banco de dados
     const tickets = database.select("tickets")
     //retornando os tickets
