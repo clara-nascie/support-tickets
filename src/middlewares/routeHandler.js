@@ -11,8 +11,8 @@ const database = new Database()
 export function routeHandler(req, res) {
    //procurando a rota que corresponde ao método e ao caminho da requisição
     const route = routes.find((route) => {
-        //retorna true se a rota for encontrada
-        return route.method === req.method && route.path === req.url
+        //usa o método test() da Regex para verificar se o caminho da requisição bate com o padrão
+        return route.method === req.method && route.path.test(req.url)
     })
 
     // se route existe 
